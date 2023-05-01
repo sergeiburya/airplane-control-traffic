@@ -1,0 +1,42 @@
+package com.example.airplanecontroltraffic.controller;
+
+import com.example.airplanecontroltraffic.dto.request.WayPointRequestDto;
+import com.example.airplanecontroltraffic.dto.response.WayPointResponseDto;
+import com.example.airplanecontroltraffic.dto.mapper.WayPointMapper;
+import com.example.airplanecontroltraffic.service.WayPointService;
+import java.util.List;
+import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping("/way-point")
+public class WayPointController {
+    private final WayPointService wayPointService;
+    private final WayPointMapper wayPointMapper;
+
+    @GetMapping("/all")
+    public List<WayPointResponseDto> findAllWayPoints() {
+        return wayPointService.findAll()
+                .stream()
+                .map(wayPointMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/{id}")
+    public WayPointResponseDto getById(@PathVariable String id) {
+        return wayPointMapper.toDto(wayPointService.findById(id)
+                .orElseThrow(RuntimeException::new));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable String id) {
+        wayPointService.deleteById(id);
+    }
+
+    @PostMapping("/add-way-point")
+    public WayPointResponseDto save(@RequestBody WayPointRequestDto requestDto) {
+        return wayPointMapper.toDto(wayPointService.create(wayPointMapper.toModel(requestDto)));
+    }
+}
