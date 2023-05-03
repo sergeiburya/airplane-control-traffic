@@ -1,22 +1,26 @@
 package com.example.airplanecontroltraffic.dto.mapper;
 
-import java.util.stream.Collectors;
+import com.example.airplanecontroltraffic.dto.request.AirplaneRequestDto;
 import com.example.airplanecontroltraffic.dto.response.AirplaneResponseDto;
 import com.example.airplanecontroltraffic.model.Airplane;
-import com.example.airplanecontroltraffic.model.Flight;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AirplaneMapper {
+    private final ModelMapper modelMapper;
+
+    @Autowired
+    public AirplaneMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
+
     public AirplaneResponseDto toDto(Airplane airplane) {
-        AirplaneResponseDto airplaneResponseDto = new AirplaneResponseDto();
-        airplaneResponseDto.setId(airplane.getId());
-        airplaneResponseDto.setFlightsIds(airplane.getFlights()
-                .stream()
-                .map(Flight::getId)
-                .collect(Collectors.toList()));
-        airplaneResponseDto.setCharacteristicsIds(airplaneResponseDto.getCharacteristicsIds());
-        airplaneResponseDto.setPositionId(airplaneResponseDto.getPositionId());
-        return airplaneResponseDto;
+        return modelMapper.map(airplane, AirplaneResponseDto.class);
+    }
+
+    public Airplane toModel(AirplaneRequestDto airplaneRequestDto) {
+        return modelMapper.map(airplaneRequestDto, Airplane.class);
     }
 }

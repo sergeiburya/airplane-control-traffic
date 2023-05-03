@@ -3,28 +3,24 @@ package com.example.airplanecontroltraffic.dto.mapper;
 import com.example.airplanecontroltraffic.dto.request.WayPointRequestDto;
 import com.example.airplanecontroltraffic.dto.response.WayPointResponseDto;
 import com.example.airplanecontroltraffic.model.WayPoint;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class WayPointMapper {
+    private final ModelMapper modelMapper;
+
+    @Autowired
+    public WayPointMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
+
     public WayPointResponseDto toDto(WayPoint wayPoint) {
-        WayPointResponseDto wayPointResponseDto = new WayPointResponseDto();
-        wayPointResponseDto.setId(wayPoint.getId());
-        wayPointResponseDto.setPointName(wayPoint.getPointName());
-        wayPointResponseDto.setLatitude(wayPoint.getLatitude());
-        wayPointResponseDto.setLongitude(wayPoint.getLongitude());
-        wayPointResponseDto.setFlightHeight(wayPoint.getFlightHeight());
-        wayPointResponseDto.setFlightSpeed(wayPoint.getFlightSpeed());
-        return wayPointResponseDto;
+        return modelMapper.map(wayPoint, WayPointResponseDto.class);
     }
 
     public WayPoint toModel(WayPointRequestDto requestDto) {
-        WayPoint wayPoint = new WayPoint();
-        wayPoint.setPointName(requestDto.getPointName());
-        wayPoint.setLatitude(requestDto.getLatitude());
-        wayPoint.setLongitude(requestDto.getLongitude());
-        wayPoint.setFlightHeight(requestDto.getFlightHeight());
-        wayPoint.setFlightSpeed(requestDto.getFlightSpeed());
-        return wayPoint;
+        return modelMapper.map(requestDto, WayPoint.class);
     }
 }
