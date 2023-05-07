@@ -2,7 +2,6 @@ package com.example.airplanecontroltraffic.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import com.example.airplanecontroltraffic.model.Airplane;
 
 public interface AirplaneService {
@@ -14,4 +13,5 @@ public interface AirplaneService {
 
     void deleteById(String id);
 
+    List<Airplane> toFly();
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 public class TemporaryPointRequestDto {
+    private String id;
     private double latitude;
     private double longitude;
     private double flightHeight;

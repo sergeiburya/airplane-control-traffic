@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WayPointRepository extends MongoRepository<WayPoint, String> {
+    WayPoint findWayPointByPointName(String pointName);
 }

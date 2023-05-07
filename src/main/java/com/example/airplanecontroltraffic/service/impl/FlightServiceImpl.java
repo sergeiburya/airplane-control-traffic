@@ -1,5 +1,6 @@
 package com.example.airplanecontroltraffic.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import com.example.airplanecontroltraffic.model.Flight;
@@ -29,22 +30,33 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public Flight save(Flight flight) {
-        List<WayPoint> wayPoints = flight.getWayPoints();
-        if (wayPoints != null) {
-            for (WayPoint wayPoint : wayPoints) {
-                if (wayPoint.getId() == null) {
+        List<WayPoint> inWayPoints = flight.getWayPoints();
+        List<WayPoint> outWayPoints = new ArrayList<>();
+        if (inWayPoints != null) {
+            for (WayPoint wayPoint : inWayPoints) {
+                if (wayPoint.getId() != null) {
+                    outWayPoints.add(wayPointService.findById(wayPoint.getId()));
+                } else if (wayPoint.getPointName() != null) {
+                    outWayPoints.add(wayPointService.findWayPointByPointName(wayPoint.getPointName()));
+                } else {
                     wayPointService.create(wayPoint);
+                    outWayPoints.add(wayPoint);
                 }
             }
         }
-        List<TemporaryPoint> passedPoints = flight.getPassedPoints();
-        if (passedPoints != null) {
-            for (TemporaryPoint passedPoint : passedPoints) {
-                if (passedPoint.getId() == null) {
-                    temporaryPointService.save(passedPoint);
+        flight.setWayPoints(outWayPoints);
+        List<TemporaryPoint> inPassedPoints = flight.getPassedPoints();
+        List<TemporaryPoint> outPassedPoints = new ArrayList<>();
+        if (inPassedPoints != null) {
+            for (TemporaryPoint passedPoint : inPassedPoints) {
+                if (passedPoint.getId() != null) {
+                    outPassedPoints.add(temporaryPointService.findById(passedPoint.getId()));
+                } else {
+                    outPassedPoints.add(temporaryPointService.save(passedPoint));
                 }
             }
         }
+        flight.setPassedPoints(outPassedPoints);
         return flightRepository.save(flight);
     }
 

@@ -21,5 +21,5 @@ public class TemporaryPoint {
     private double longitude;
     private double flightHeight;
     private double flightSpeed;
-    private double azimuth;
+    private double course;
 }

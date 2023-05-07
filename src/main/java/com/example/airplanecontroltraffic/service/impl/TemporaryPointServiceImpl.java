@@ -1,7 +1,6 @@
 package com.example.airplanecontroltraffic.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.example.airplanecontroltraffic.model.TemporaryPoint;
 import com.example.airplanecontroltraffic.repository.TemporaryPointRepository;
@@ -24,8 +23,9 @@ public class TemporaryPointServiceImpl implements TemporaryPointService {
     }
 
     @Override
-    public Optional<TemporaryPoint> findById(String id) {
-        return temporaryPointRepository.findById(id);
+    public TemporaryPoint findById(String id) {
+        return temporaryPointRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Can't find Temporary Point by id" + id));
     }
 
     @Override

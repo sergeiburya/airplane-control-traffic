@@ -3,7 +3,7 @@ package com.example.airplanecontroltraffic.service.impl;
 import com.example.airplanecontroltraffic.model.WayPoint;
 import com.example.airplanecontroltraffic.service.WayPointService;
 import java.util.List;
-import java.util.Optional;
+
 import com.example.airplanecontroltraffic.repository.WayPointRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +23,9 @@ public class WayPointServiceImpl implements WayPointService {
     }
 
     @Override
-    public Optional<WayPoint> findById(String id) {
-        return wayPointRepository.findById(id);
+    public WayPoint findById(String id) {
+        return wayPointRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Can't find way point by id" + id));
     }
 
     @Override
@@ -35,5 +36,10 @@ public class WayPointServiceImpl implements WayPointService {
     @Override
     public List<WayPoint> findAll() {
         return wayPointRepository.findAll();
+    }
+
+    @Override
+    public WayPoint findWayPointByPointName(String pointName) {
+        return wayPointRepository.findWayPointByPointName(pointName);
     }
 }

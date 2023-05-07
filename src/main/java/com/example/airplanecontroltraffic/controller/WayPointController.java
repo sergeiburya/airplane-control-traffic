@@ -32,8 +32,7 @@ public class WayPointController {
 
     @GetMapping("/{id}")
     public WayPointResponseDto getById(@PathVariable String id) {
-        return wayPointMapper.toDto(wayPointService.findById(id)
-                .orElseThrow(RuntimeException::new));
+        return wayPointMapper.toDto(wayPointService.findById(id));
     }
 
     @DeleteMapping("/{id}")

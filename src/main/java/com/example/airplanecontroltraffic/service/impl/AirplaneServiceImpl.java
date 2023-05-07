@@ -3,10 +3,7 @@ package com.example.airplanecontroltraffic.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.airplanecontroltraffic.model.Airplane;
-import com.example.airplanecontroltraffic.model.AirplaneCharacteristics;
-import com.example.airplanecontroltraffic.model.Flight;
-import com.example.airplanecontroltraffic.model.TemporaryPoint;
+import com.example.airplanecontroltraffic.model.*;
 import com.example.airplanecontroltraffic.repository.AirplaneRepository;
 import com.example.airplanecontroltraffic.service.AirplaneCharacteristicsService;
 import com.example.airplanecontroltraffic.service.AirplaneService;
@@ -67,5 +64,35 @@ public class AirplaneServiceImpl implements AirplaneService {
     @Override
     public void deleteById(String id) {
         airplaneRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Airplane> toFly() {
+        List<Airplane> airplaneList = findAll();
+        for (Airplane airplane : airplaneList) {
+            List<Flight> flights = airplane.getFlights();
+            for (Flight flight : flights) {
+                List<WayPoint> wayPoints = flight.getWayPoints();
+                for (WayPoint wayPoint : wayPoints) {
+                    courseCalculation(airplane.getPosition(), wayPoint);
+
+                }
+            }
+
+        }
+        return airplaneList;
+    }
+
+    private double courseCalculation(TemporaryPoint position, WayPoint wayPoint) {
+        double course;
+        double currentLatitude = position.getLatitude();
+        double currentLongitude = position.getLongitude();
+        course = Math.atan2(Math.sin(wayPoint.getLongitude() - currentLongitude)
+                    * Math.cos(wayPoint.getLatitude()),
+                    Math.cos(currentLatitude)*Math.sin(wayPoint.getLatitude())
+                            - Math.sin(currentLatitude) * Math.cos(wayPoint.getLatitude())
+                            * Math.cos(wayPoint.getLongitude() - currentLongitude)) * 180/Math.PI;
+
+        return course;
     }
 }
