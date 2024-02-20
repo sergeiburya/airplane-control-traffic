@@ -1,8 +1,8 @@
-package com.example.airplanecontroltraffic.controller;
+package com.example.airplanecontroltraffic.controller.rest;
 
+import com.example.airplanecontroltraffic.dto.mapper.WayPointMapper;
 import com.example.airplanecontroltraffic.dto.request.WayPointRequestDto;
 import com.example.airplanecontroltraffic.dto.response.WayPointResponseDto;
-import com.example.airplanecontroltraffic.dto.mapper.WayPointMapper;
 import com.example.airplanecontroltraffic.service.WayPointService;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/way-point")
-public class WayPointController {
+public class WayPointRestController {
     private final WayPointService wayPointService;
     private final WayPointMapper wayPointMapper;
 

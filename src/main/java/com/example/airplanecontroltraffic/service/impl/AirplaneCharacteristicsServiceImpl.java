@@ -1,11 +1,9 @@
 package com.example.airplanecontroltraffic.service.impl;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.example.airplanecontroltraffic.model.AirplaneCharacteristics;
 import com.example.airplanecontroltraffic.repository.AirplaneCharacteristicsRepository;
 import com.example.airplanecontroltraffic.service.AirplaneCharacteristicsService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +22,10 @@ public class AirplaneCharacteristicsServiceImpl implements AirplaneCharacteristi
     }
 
     @Override
-    public Optional<AirplaneCharacteristics> findById(String id) {
-        return repository.findById(id);
+    public AirplaneCharacteristics findById(String id) {
+        return repository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Can't find AirplaneCharacteristics by id" + id));
     }
 
     @Override

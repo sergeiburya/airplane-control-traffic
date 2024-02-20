@@ -1,10 +1,9 @@
 package com.example.airplanecontroltraffic.service.impl;
 
-import java.util.List;
-
 import com.example.airplanecontroltraffic.model.TemporaryPoint;
 import com.example.airplanecontroltraffic.repository.TemporaryPointRepository;
 import com.example.airplanecontroltraffic.service.TemporaryPointService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +24,7 @@ public class TemporaryPointServiceImpl implements TemporaryPointService {
     @Override
     public TemporaryPoint findById(String id) {
         return temporaryPointRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Can't find Temporary Point by id" + id));
+                .orElseThrow(() -> new RuntimeException("Can't find Temporary Point by id" + id));
     }
 
     @Override

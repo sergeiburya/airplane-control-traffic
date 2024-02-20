@@ -1,7 +1,5 @@
 package com.example.airplanecontroltraffic.dto.response;
 
-import java.util.List;
-
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -15,5 +13,5 @@ public class AirplaneResponseDto {
     @JsonDeserialize(contentAs = TemporaryPointResponseDto.class)
     private TemporaryPointResponseDto position;
     @JsonDeserialize(contentAs = FlightResponseDto.class)
-    private List<FlightResponseDto> flights;
+    private FlightResponseDto flight;
 }

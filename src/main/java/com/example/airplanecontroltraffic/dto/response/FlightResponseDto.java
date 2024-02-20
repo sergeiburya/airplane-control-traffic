@@ -1,6 +1,7 @@
 package com.example.airplanecontroltraffic.dto.response;
 
-import java.util.List;import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,5 +1,6 @@
 package com.example.airplanecontroltraffic.model;
 
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,4 +23,5 @@ public class TemporaryPoint {
     private double flightHeight;
     private double flightSpeed;
     private double course;
+    private LocalDateTime timeInPoint;
 }
