@@ -10,6 +10,6 @@ public class WayPointResponseDto {
     private String pointName;
     private double latitude;
     private double longitude;
-    private double flightHeight;
+    private double flightAltitude;
     private double flightSpeed;
 }

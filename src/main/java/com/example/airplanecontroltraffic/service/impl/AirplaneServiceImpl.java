@@ -145,14 +145,14 @@ public class AirplaneServiceImpl implements AirplaneService {
             double time) {
 
         double airplaneAltitude = position.getFlightHeight();
-        if (airplaneAltitude < wayPoint.getFlightHeight()) {
+        if (airplaneAltitude < wayPoint.getFlightAltitude()) {
             airplaneAltitude = airplaneAltitude
                     + airplane.getCharacteristics().getSpeedOfChangeAltitude() * time;
-            return Math.min(airplaneAltitude, wayPoint.getFlightHeight());
-        } else if (airplaneAltitude > wayPoint.getFlightHeight()) {
+            return Math.min(airplaneAltitude, wayPoint.getFlightAltitude());
+        } else if (airplaneAltitude > wayPoint.getFlightAltitude()) {
             airplaneAltitude = airplaneAltitude
                     - airplane.getCharacteristics().getSpeedOfChangeAltitude() * time;
-            return Math.max(airplaneAltitude, wayPoint.getFlightHeight());
+            return Math.max(airplaneAltitude, wayPoint.getFlightAltitude());
         } else {
             return airplaneAltitude;
         }

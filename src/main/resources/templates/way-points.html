@@ -12,10 +12,11 @@
     <h1>Way Points</h1>
     <div th:each="el : ${wayPoints}" class="alert alert-info-mt-2">
       <h3 th:text="${el.getId()}"></h3>
+      <h3 th:text="${el.getPointName()}"></h3>
       <h3 th:text="${el.getLatitude()}"></h3>
       <h3 th:text="${el.getLongitude()}"></h3>
       <h3 th:text="${el.getFlightSpeed()}"></h3>
-      <h3 th:text="${el.getFlightHeight()}"></h3>
+      <h3 th:text="${el.getFlightAltitude()}"></h3>
     </div>
   </div>
 </main>
