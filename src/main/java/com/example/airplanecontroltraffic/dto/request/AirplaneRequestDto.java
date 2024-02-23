@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 public class AirplaneRequestDto {
+    private String id;
     @JsonDeserialize(contentAs = AirplaneCharacteristicsRequestDto.class)
     private AirplaneCharacteristicsRequestDto characteristics;
     @JsonDeserialize(contentAs = TemporaryPointRequestDto.class)

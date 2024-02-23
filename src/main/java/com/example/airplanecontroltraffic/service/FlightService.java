@@ -1,6 +1,7 @@
 package com.example.airplanecontroltraffic.service;
 
 import com.example.airplanecontroltraffic.model.Flight;
+import com.example.airplanecontroltraffic.model.TemporaryPoint;
 import java.util.List;
 
 public interface FlightService {
@@ -13,4 +14,6 @@ public interface FlightService {
     void deleteById(String id);
 
     Flight findByNumber(Long number);
+
+    Flight updatePassedPoints(TemporaryPoint position, Flight flight);
 }

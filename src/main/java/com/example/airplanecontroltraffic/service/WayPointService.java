@@ -1,5 +1,7 @@
 package com.example.airplanecontroltraffic.service;
 
+import com.example.airplanecontroltraffic.model.Flight;
+import com.example.airplanecontroltraffic.model.TemporaryPoint;
 import com.example.airplanecontroltraffic.model.WayPoint;
 import java.util.List;
 
@@ -13,4 +15,6 @@ public interface WayPointService {
     List<WayPoint> findAll();
 
     WayPoint findWayPointByPointName(String pointName);
+
+    WayPoint determineTargetWayPoint(TemporaryPoint position, Flight flight);
 }

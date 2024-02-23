@@ -13,5 +13,6 @@ public class TemporaryPointResponseDto {
     private double flightHeight;
     private double flightSpeed;
     private double course;
+    private double distanceToTargetPoint;
     private LocalDateTime timeInPoint;
 }

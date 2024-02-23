@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,11 +36,8 @@ public class AirplaneRestController {
                 airplaneMapper.toModel(airplaneRequestDto)));
     }
 
-    @GetMapping
-    public List<AirplaneResponseDto> airFly() {
-        return airplaneService.toFly()
-                .stream()
-                .map(airplaneMapper::toDto)
-                .collect(Collectors.toList());
+    @PutMapping("/updatePosition/{id}")
+    public AirplaneResponseDto updateAirplanePositionInFly(@PathVariable String id) {
+        return airplaneMapper.toDto(airplaneService.updateAirplanePositionInFly(id));
     }
 }

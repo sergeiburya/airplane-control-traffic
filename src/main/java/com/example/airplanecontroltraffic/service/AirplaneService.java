@@ -12,5 +12,5 @@ public interface AirplaneService {
 
     void deleteById(String id);
 
-    List<Airplane> toFly();
+    Airplane updateAirplanePositionInFly(String id);
 }
