@@ -49,6 +49,6 @@ public class WayPointController {
         model.addAttribute("title", "Add Way Point");
         model.addAttribute("name", "Add New Way Point");
         model.addAttribute("wayPoint", dto);
-        return "redirect:/way-point/way-points";
+        return "redirect:/way-point/add";
     }
 }
