@@ -37,18 +37,18 @@ public class WayPointController {
     public String showNewWayPoint(Model model) {
         model.addAttribute("title", "Add Way Point");
         model.addAttribute("name", "Add New Way Point");
-        return "way-point-add";
+        return "add-way-point";
     }
 
     @PostMapping("/add")
     public String saveNewWayPoint(
             @ModelAttribute WayPointRequestDto wayPointRequestDto, Model model) {
-        WayPointResponseDto dto =
+        WayPointResponseDto wayPoint =
                 wayPointMapper.toDto(
                         wayPointService.create(wayPointMapper.toModel(wayPointRequestDto)));
         model.addAttribute("title", "Add Way Point");
         model.addAttribute("name", "Add New Way Point");
-        model.addAttribute("wayPoint", dto);
+        model.addAttribute("wayPoint", wayPoint);
         return "redirect:/way-point/add";
     }
 }
