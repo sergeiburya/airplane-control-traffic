@@ -10,12 +10,8 @@
 <header th:insert="/block/header.html"></header>
 <main>
     <div class="container mt-5 md-5">
-        <h1 th:text="${name}"></h1>
-        <form action="/airplane/add-airplane" object="airplane" method="post">
-            <input type="text" name="characteristics" placeholder="input characteristic id" class="form-control"><br>
-            <input type="text" name="flight" placeholder="input flight id" class="form-control"><br>
-            <button type="submit" class="btn btn-success">Save new Airplane</button>
-        </form>
+        <h1 th:text="${name}">r</h1>
+        <p th:text="${errorMessage}"></p>
     </div>
 </main>
 <footer th:insert="/block/footer.html"></footer>
