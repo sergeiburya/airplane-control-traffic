@@ -20,28 +20,28 @@
 A simple application to simulate the flight of an aircraft.
 
 We have such entities as:
-Airplane, which has the following properties: identifier, name, airplane characteristics,  flight.
+The Airplane has the following properties: identifier, name, airplane characteristics,  flight.
 
-Way point, which has the following properties: identifier, point name, latitude of the point, longitude of the point, altitude of the point, flight speed.
+Waypoint has the following properties: identifier, point name, latitude of the point, longitude of the point, altitude of the point, and flight speed.
 
-A temporary point that has the following properties: identifier, point latitude, point longitude, point altitude, flight speed, flight direction (course).
+A temporary point that has the following properties: identifier, point latitude, point longitude, point altitude, flight speed, and flight direction (course).
 
-A flight that has the following properties: identifier, flight name, list of flight points, list of temporary flight points.
+A flight that has the following properties: identifier, flight name, list of flight points, and list of temporary points.
 
-Airplane characteristics, which has the following properties: identifier, maximum speed, acceleration, rate of change of altitude, rate of change of course.
+Airplane characteristics have the following properties: identifier, maximum speed, acceleration, rate of change of altitude, and rate of change of course.
 
 To store these entities, we use the MongoDB database.
 
-The user, through the web service (controller), creates the Way Point entity and enters the values of all properties except the identifier, which is assigned by the database.
+Through the web service (controller), create the Way Point entity and enter the values of all properties except the identifier assigned by the database.
 
-The user, through the web service (controller), creates the Airplane characteristics entity and enters the values of all properties except the identifier assigned by the database.
+Through the web service (controller), create the Airplane characteristics entity and enter the values of all properties except the identifier assigned by the database.
 
-The user, through the web service (controller), creates the Flight entity and enters such properties as Flight name, the value of the identifier assigned by the database, the value for the list of flight points is selected by the user from the Way points stored in the database.
+Through the web service (controller), create the Flight entity and enter such properties as Flight name, the value of the identifier assigned by the database, and the value for the list of flight points selected by the user from the WayPoints stored in the database.
 
-The user creates the Aircraft entity using a web service (controller) and enters such properties as the name, the identifier value is assigned by the database, the value for the flight is selected by the user from those stored in the database.
+The user creates the Aircraft entity using a web service (controller) and enters such properties as the name, the database assigns the identifier value, and the user selects the value for the flight from those stored in the database.
 
-To start the flight simulation, you need to select the appropriate controller and enter the aircraft identifier that was saved in the database as a parameter.
-With each refresh of the page, all current flight parameters will be recalculated, added and saved in the database and displayed on the page.
+To start the flight simulation,  select the appropriate controller and enter the aircraft identifier that was saved in the database as a parameter.
+With each refresh of the page, all current flight parameters will be recalculated, added, and saved in the database, and displayed on the page.
 
 * WayPointController, WayPointRestController
 * AirplanecharacteristicsController, AirplanecharacteristicsRestController 
@@ -57,7 +57,7 @@ With each refresh of the page, all current flight parameters will be recalculate
 
 
 ### Quick Start:
-1. Clone the [repository](https://github.com/sergeiburya/food-sparks)
+1. Clone the [repository](https://github.com/sergeiburya/airplane-control-traffic)
 2. Install NOSQL MongoDB
 3. Create schema airs_control
 4. Set the necessary database connection settings in the file [application.properties](src/main/resources/application.properties)
