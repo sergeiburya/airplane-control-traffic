@@ -1,6 +1,5 @@
 package com.example.airplanecontroltraffic.model;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,5 +23,5 @@ public class Airplane {
     @DBRef
     private TemporaryPoint position;
     @DBRef
-    private List<Flight> flights;
+    private Flight flight;
 }

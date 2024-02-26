@@ -1,17 +1,16 @@
 package com.example.airplanecontroltraffic.service;
 
-import java.util.List;
-import java.util.Optional;
 import com.example.airplanecontroltraffic.model.Airplane;
+import java.util.List;
 
 public interface AirplaneService {
     Airplane save(Airplane airplane);
 
-    Optional<Airplane> findById(String id);
+    Airplane findById(String id);
 
     List<Airplane> findAll();
 
     void deleteById(String id);
 
-    List<Airplane> toFly();
+    Airplane updateAirplanePositionInFly(String id);
 }

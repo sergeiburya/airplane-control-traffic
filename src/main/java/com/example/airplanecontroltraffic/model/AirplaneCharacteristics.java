@@ -17,6 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class AirplaneCharacteristics {
     @Id
     private String id;
+    private String name;
     private double maxSpeed;
     private double acceleration;
     private double speedOfChangeAltitude;

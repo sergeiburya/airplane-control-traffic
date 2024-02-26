@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Component
 public class FlightRequestDto {
+    private String id;
     private Long number;
     @JsonDeserialize(contentAs = WayPointRequestDto.class)
     private List<WayPointRequestDto> wayPoints;

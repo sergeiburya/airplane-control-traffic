@@ -1,5 +1,6 @@
 package com.example.airplanecontroltraffic.dto.request;
 
+import java.time.LocalDateTime;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -11,5 +12,7 @@ public class TemporaryPointRequestDto {
     private double longitude;
     private double flightHeight;
     private double flightSpeed;
-    private double azimuth;
+    private double course;
+    private double distanceToTargetPoint;
+    private LocalDateTime timeInPoint;
 }

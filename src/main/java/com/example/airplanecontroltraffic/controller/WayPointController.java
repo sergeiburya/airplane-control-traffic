@@ -1,47 +1,54 @@
 package com.example.airplanecontroltraffic.controller;
 
+import com.example.airplanecontroltraffic.dto.mapper.WayPointMapper;
 import com.example.airplanecontroltraffic.dto.request.WayPointRequestDto;
 import com.example.airplanecontroltraffic.dto.response.WayPointResponseDto;
-import com.example.airplanecontroltraffic.dto.mapper.WayPointMapper;
 import com.example.airplanecontroltraffic.service.WayPointService;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@AllArgsConstructor
-@RequestMapping("/way-point")
+@Controller
+@RequiredArgsConstructor
+@RequestMapping("way-point")
 public class WayPointController {
-    private final WayPointService wayPointService;
     private final WayPointMapper wayPointMapper;
+    private final WayPointService wayPointService;
 
-    @GetMapping("/all")
-    public List<WayPointResponseDto> findAllWayPoints() {
-        return wayPointService.findAll()
+    @GetMapping("/way-points")
+    public String getAllWayPoints(Model model) {
+        List<WayPointResponseDto> wayPoints = wayPointService.findAll()
                 .stream()
                 .map(wayPointMapper::toDto)
                 .collect(Collectors.toList());
+        model.addAttribute("title", "Way Points");
+        model.addAttribute("name", "Way Points");
+        model.addAttribute("wayPoints", wayPoints);
+        return "way-points";
     }
 
-    @GetMapping("/{id}")
-    public WayPointResponseDto getById(@PathVariable String id) {
-        return wayPointMapper.toDto(wayPointService.findById(id));
+    @GetMapping("/add")
+    public String showNewWayPoint(Model model) {
+        model.addAttribute("title", "Add Way Point");
+        model.addAttribute("name", "Add New Way Point");
+        return "add-way-point";
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable String id) {
-        wayPointService.deleteById(id);
-    }
-
-    @PostMapping("/add-way-point")
-    public WayPointResponseDto save(@RequestBody WayPointRequestDto requestDto) {
-        return wayPointMapper.toDto(wayPointService.create(wayPointMapper.toModel(requestDto)));
+    @PostMapping("/add")
+    public String saveNewWayPoint(
+            @ModelAttribute WayPointRequestDto wayPointRequestDto, Model model) {
+        WayPointResponseDto wayPoint =
+                wayPointMapper.toDto(
+                        wayPointService.create(wayPointMapper.toModel(wayPointRequestDto)));
+        model.addAttribute("title", "Add Way Point");
+        model.addAttribute("name", "Add New Way Point");
+        model.addAttribute("wayPoint", wayPoint);
+        return "redirect:/way-point/add";
     }
 }

@@ -20,7 +20,8 @@ public class AirplaneCharacteristicsMapper {
         return modelMapper.map(characteristics, AirplaneCharacteristicsResponseDto.class);
     }
 
-    public AirplaneCharacteristics toModel(AirplaneCharacteristicsRequestDto characteristicsRequestDto) {
+    public AirplaneCharacteristics toModel(
+            AirplaneCharacteristicsRequestDto characteristicsRequestDto) {
         return modelMapper.map(characteristicsRequestDto, AirplaneCharacteristics.class);
     }
 }

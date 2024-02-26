@@ -20,7 +20,7 @@ public class FlightMapper {
         return modelMapper.map(flight, FlightResponseDto.class);
     }
 
-    public Flight toModel (FlightRequestDto flightRequestDto) {
+    public Flight toModel(FlightRequestDto flightRequestDto) {
         return modelMapper.map(flightRequestDto, Flight.class);
     }
 }
